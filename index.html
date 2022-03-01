@@ -19,14 +19,17 @@
     <h1 class="bg-success p-2 text-white bg-opacity-75 text-center mb-3">Choose a phone</h1>
   </header>
   <main>
-    <div>
+    <section>
       <div class=" input-group mb-3 w-50 m-auto">
-        <input type="text" class="form-control" placeholder="Find a Mobile" aria-label="Recipient's username"
-          aria-describedby="button-addon2">
+        <input id="search-box" type="text" class="form-control" placeholder="Find a Mobile"
+          aria-label="Recipient's username" aria-describedby="button-addon2">
         <button class="btn btn-outline-secondary" type="button" id="button-addon2">Search</button>
       </div>
-
-    </div>
+    </section>
+    <section>
+      <div id="search-result" class="row row-cols-1 row-cols-md-3 g-4">
+      </div>
+    </section>
   </main>
   <footer>
 
