@@ -10,12 +10,16 @@ document.getElementById('button-addon2').addEventListener('click', () => {
 
 const displaySearchResult = mobiles => {
   const searchresult = document.getElementById("search-result");
-  mobiles.forEach(mobile => {
-    const div = document.createElement('div');
-    div.classList.add('col');
-    div.innerHTML = `
+  searchresult.innerHTML = '';
+  mobiles = mobiles.slice(0, 20);
+  if (mobiles.length > 0) {
+
+    mobiles.forEach(mobile => {
+      const div = document.createElement('div');
+      div.classList.add('col');
+      div.innerHTML = `
           <div class="card shadow-sm">
-            <img src="${mobile.image}" class="card-img-top w-75 m-auto p-3" alt="...">
+            <img src="${mobile.image}" class="card-img-top w-auto m-auto p-3" alt="...">
             <div class="card-body">
               <h5 class="card-title">${mobile.brand}</h5>
               <h5 class="card-text">${mobile.phone_name}</h5>
@@ -23,8 +27,12 @@ const displaySearchResult = mobiles => {
             </div>
           </div>
     `
-    searchresult.appendChild(div);
-  })
+      searchresult.appendChild(div);
+    })
+  }
+  else {
+    searchresult.innerHTML = `<h1 class="w-100 text-center">No Phone Found</h1>`
+  }
 }
 
 const showDetails = phoneId => {
@@ -39,7 +47,7 @@ const detailsResult = details => {
   const section = document.getElementById("showFullDetails");
   section.innerHTML = `
       <div class="card shadow-sm my-3 mx-auto text-start  container-sm">
-          <img src="${details.image}" class="card-img-top w-50 m-auto p-2" alt="...">
+          <img src="${details.image}" class="card-img-top w-auto m-auto p-2" alt="...">
           <div class="card-body">
             <h5 class="card-title">${details.brand}</h5>
             <h5 class="card-text">${details.name}</h5>
@@ -51,42 +59,17 @@ const detailsResult = details => {
           <p> <strong>Sensors : </strong>${details.mainFeatures.sensors}</p>
           <p> <strong>Storage : </strong>${details.mainFeatures.storage}</p>
           <h5>Others</h5>
-          <p> <strong>Bluetooth : </strong>${details.others.Bluetooth}</p>
-          <p> <strong>GPS : </strong>${details.others.GPS}</p>
-          <p> <strong>NFC : </strong>${details.others.NFC}</p>
-          <p> <strong>Radio : </strong>${details.others.Radio}</p>
-          <p> <strong>USB : </strong>${details.others.USB}</p>
-          <p> <strong>WLAN : </strong>${details.others.WLAN}</p>
+          ${details.others ?
+      `<p> <strong>Bluetooth : </strong>${details.others.Bluetooth}</p>
+        <p> <strong>GPS : </strong>${details.others.GPS}</p>
+        <p> <strong>NFC : </strong>${details.others.NFC}</p>
+        <p> <strong>Radio : </strong>${details.others.Radio}</p>
+        <p> <strong>USB : </strong>${details.others.USB}</p>
+        <p> <strong>WLAN : </strong>${details.others.WLAN}</p>`
+      :
+      `<p>NO Other Details Found</p>`
+    }
           </div>
       </div>
     `
 }
-
-
-
-
-// const detailsResult = details => {
-//   // console.log(details);
-//   const sectionInnerDiv = document.getElementById("showPhoneDetails");
-//   const section = document.getElementById("showFullDetails");
-//   const x = section.querySelector('div')
-//   if (x.children.length > 0) {
-//     section.removeChild(x);
-//   }
-//   // console.log(x.children.length);
-//   const div = document.createElement('div');
-//   div.setAttribute('class', 'card shadow-sm my-3');
-//   div.innerHTML = `
-//         <div>
-//           <img src="${details.image}" class="card-img-top w-25 m-auto p-3" alt="...">
-//           <div class="card-body">
-//             <h5 class="card-title">${details.brand}</h5>
-//             <h5 class="card-text">${details.name}</h5>
-//           </div>
-//         </div>
-//         <div>
-
-//         </div>
-//     `
-//   sectionInnerDiv.appendChild(div);
-// }
